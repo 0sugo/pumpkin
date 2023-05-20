@@ -195,7 +195,7 @@ Example command:
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-> I'm thankful to Microverse for providing a study platform which guided me through this project and to my coding partners at Microverse for the collaborative effort. 
+> The Pumpkin System is an open-source project, and we welcome contributions from the community. If you encounter any issues or have suggestions for improvements, please submit them through the designated channels in the repository. For additional support or inquiries, you can reach out to our development team via the provided contact information
 
 <!-- FAQ (optional) -->
 
@@ -203,13 +203,14 @@ Example command:
 
 > Add at least 2 questions new developers would ask when they decide to use your project.
 
-- **[Question_1]**
+- **[Can I use the Pumpkin System on any device?]**
 
-  - [Answer_1]
+  - [Yes, the Pumpkin System is designed to be responsive and compatible with various devices, including desktop computers, laptops, tablets, and smartphones. You can access the system using any device with an internet connection.]
 
-- **[Question_2]**
-
-  - [Answer_2]
+- **[Does the system have to be hosted online for it to work?]**
+  - [No..Actually tyou can run this locally and internet will only be required if you want to get system reports in your email]
+- **[How does the system calculate sales?]**
+  - [The system calculates sales based on the data from issued receipts. It tracks the quantities of items sold throughout the day and provides accurate sales calculations for each item.]
 
 <!-- LICENSE -->
 
