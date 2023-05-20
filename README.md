@@ -68,8 +68,6 @@
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
 - **[Sales Calculation]** - The system accurately calculates the number of pieces of items sold in the bar on a daily basis, providing you with precise sales data for inventory management and analysis.
 - **[System Reports]** -It generates insightful reports that offer valuable information to the management team. These reports showcase the most sold item in each category, providing valuable insights into customer preferences and trends. Additionally, the system provides a summary of total sales per day, enabling effective financial tracking.
 - **[Profit Margin Analysis]** - By utilizing the data from issued receipts, the system calculates the profit margins for each item. This allows you to evaluate the profitability of your business and make informed decisions to optimize your revenue.
@@ -87,9 +85,7 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
-
-To get a local copy up and running, follow these steps.
+> To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
