@@ -111,9 +111,10 @@ Example command:
 Clone this repository to your desired folder:
 
 - Open git bash on local computer
+- Navigate to desired location on your pc
 - clone the repo with: 
 
-git clone from ```https://```
+```git clone https://github.com/0sugo/pumpkin.git```
 
 <!--
 Example commands:
@@ -154,32 +155,6 @@ Example command:
   rails server
 ```
 --->
-
-### Run tests
-
-To run tests, run the following command:
-
-<!--
-Example command:
-
-```sh
-  bin/rails test test/models/article_test.rb
-```
---->
-
-### Deployment
-
-You can deploy this project using:
-
-<!--
-Example:
-
-```sh
-
-```
- -->
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
