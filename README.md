@@ -74,17 +74,14 @@
 - **[System Reports]** -It generates insightful reports that offer valuable information to the management team. These reports showcase the most sold item in each category, providing valuable insights into customer preferences and trends. Additionally, the system provides a summary of total sales per day, enabling effective financial tracking.
 - **[Profit Margin Analysis]** - By utilizing the data from issued receipts, the system calculates the profit margins for each item. This allows you to evaluate the profitability of your business and make informed decisions to optimize your revenue.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
+> Coming soon 🚀 
 
-- [Live Demo Link](https://yourdeployedapplicationlink.com)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- - [Live Demo Link](https://yourdeployedapplicationlink.com) -->
 
 <!-- GETTING STARTED -->
 
