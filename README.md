@@ -201,7 +201,7 @@ Example command:
 
 ## ❓ FAQ (OPTIONAL) <a name="faq"></a>
 
-> Add at least 2 questions new developers would ask when they decide to use your project.
+>Below are 3 questions new developers would ask when they decide to use my project.
 
 - **[Can I use the Pumpkin System on any device?]**
 
