@@ -159,7 +159,7 @@ Example command:
 
 - GitHub: [0sugo](https://github.com/0sugo)
 - Twitter: [@0sugo5](https://twitter.com/osugo5)
-- LinkedIn: [Joseck Osugo](https://www.linkedin.com/in/joseck-osugo-873b0618a/)
+- LinkedIn: [Joseck Osugo](https://www.linkedin.com/in/joseck-osugo/)
 
 
 
@@ -178,7 +178,7 @@ Example command:
 
 > Contributions, issues, and feature requests are welcome!
 
-> Feel free to check the [issues page](../../issues/).
+> Feel free to check the [issues page](https://github.com/0sugo/pumpkin/issues).
 
 
 <!-- SUPPORT -->
