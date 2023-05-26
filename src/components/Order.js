@@ -1,8 +1,11 @@
-import React from 'react'
+import Navbar from './Navbar';
 
 const Order = () => {
   return (
-    <div>Place order is under construction</div>
+    <div>
+     <Navbar />
+     <p>Place order is under construction</p>  
+    </div>
   )
 }
 
