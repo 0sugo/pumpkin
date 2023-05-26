@@ -1,7 +1,11 @@
+import Navbar from "./Navbar"
 
 const Stock = () => {
   return (
-    <div>Stock</div>
+    <div>
+     <Navbar />
+     <p>Stocks area is under construction</p>
+    </div>
   )
 }
 
