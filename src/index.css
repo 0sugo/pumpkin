@@ -68,11 +68,12 @@ a:active {
 }
 .links {
   background: #4c7db0;
-  width: 30%;
+  width: 35%;
   text-align: center;
-  font-size: 36px;
+  font-size: 40px;
+  font-weight: 900;
   color: #f6f6f3;
-  opacity: 90%;
+  opacity: 95%;
   padding: 4%;
   border-radius:8px;
   -webkit-border-radius:8px;
