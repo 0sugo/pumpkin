@@ -1,19 +1,15 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Products = () => {
-const products = useSelector((store)=> store.allProducts)
-console.log( products)
-    return (
+  const products = useSelector((store) => store.allProducts);
+  return (
     <div>
-        <ul>    
-            {products.products.map((item)=>{
-                return <li key={item}>{item}</li>
-                // console.log(item);
-            })}
-        </ul>
+      <ul>
+        {products.products.map((item) => <li key={item}>{item}</li>)}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
