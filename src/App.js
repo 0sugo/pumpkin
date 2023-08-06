@@ -14,7 +14,6 @@ function App() {
         <Route path="Butchery" element={<Butchery />} />
       </Routes>
       </Routes>
-      </Routes>
 
     </div>
   );
