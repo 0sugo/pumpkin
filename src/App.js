@@ -13,7 +13,6 @@ function App() {
         <Route path="Order" element={<Order />} />
         <Route path="Butchery" element={<Butchery />} />
       </Routes>
-      </Routes>
 
     </div>
   );
