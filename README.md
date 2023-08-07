@@ -100,7 +100,6 @@ Example command:
 Example command:
 Example command:
 Example command:
-Example command:
 
 ```sh
  gem install rails
