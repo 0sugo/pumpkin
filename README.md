@@ -96,6 +96,15 @@ In order to run this project you need:
 
 <!--
 Example command:
+Example command:
+Example command:
+Example command:
+Example command:
+Example command:
+Example command:
+Example command:
+Example command:
+Example command:
 
 ```sh
  gem install rails
