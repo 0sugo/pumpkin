@@ -4,7 +4,7 @@ import Products from './Products';
 const Order = () => (
   <div>
     <Navbar />
-    <p>Place order is under construction</p>
+    {/* <p>Nav is under construction</p> */}
     <Products />
   </div>
 );
