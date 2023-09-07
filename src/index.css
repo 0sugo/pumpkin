@@ -104,3 +104,35 @@ a:active {
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
+/* products */
+.products-container {
+  display: flex;
+  height: 90vh;
+  border:1px solid blue;
+}
+.list-all-products {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  border: 1px solid red;
+  padding: 25px;
+  gap:10px;
+  width: 20%;
+}
+.products-container .list-all-products {
+  flex-grow: 1;
+}
+.product {
+  border:1px solid green;
+  list-style: none;
+  text-align: center;
+  padding: 10px;
+  /* width: 100px; */
+
+}
+/* Receipt */
+.receipt-area {
+  border: 1px solid black;
+  height:100%;
+
+}
