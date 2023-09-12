@@ -3,7 +3,7 @@ import Stock from './components/Stock';
 import Order from './components/Order';
 import Home from './components/Home';
 import Butchery from './components/Butchery';
-qwer
+qwe
 function App() {
   return (
     <div className="App">
