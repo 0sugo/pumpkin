@@ -1,11 +1,11 @@
 import Navbar from './Navbar';
-import Products from './Products';
+// import Products from './Products';
 
 const Stock = () => (
   <div>
     <Navbar />
-    <p>Stocks area is under construction</p>
-    <Products />
+    <h3 className="text-2xl font-bold underline">Stocks area is under construction</h3>
+    {/* <Products /> */}
   </div>
 );
 
