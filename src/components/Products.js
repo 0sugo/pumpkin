@@ -1,6 +1,11 @@
+/* eslint-disable */
 import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import  beer from '../images/beer-outline.svg';
+import pint from '../images/pint-outline.svg';
+import wine from '../images/wine-outline.svg';
+import restaurant from '../images/restaurant-outline.svg';
+import print from '../images/print-outline.svg';
 const Products = () => {
   const products = useSelector((store) => store.allProducts);
   const receiptRef = useRef(null);
@@ -23,12 +28,110 @@ const Products = () => {
   };
 
   const openPrintWindow = () => {
-    const printContents = selectedItems.map((item) => `<li>${item}</li>`).join('');
+    // const printContents = selectedItems.map((item) => `<li>${item}</li>`).join('');
+    const printContents = `
+    <html>
+      <head>
+        <title>Receipt</title>
+        <style>
+          .top {
+            text-align: center
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+
+          table, th, td {
+            border: 1px solid black;
+          }
+
+          th, td {
+            padding: 8px;
+            text-align: left;
+          }
+
+          .divider {
+            border-top: 2px solid black;
+            margin-top: 16px;
+            margin-bottom: 16px;
+          }
+
+          .footer {
+            text-align: center;
+            margin-top: 16px;
+          }
+
+          .total {
+            font-size: 28px;
+            font-weight: bold;
+            text-align:center;
+          }
+
+          .buy-goods {
+            font-size: 20px;
+            font-weight:bold;
+          }
+        </style>
+      </head>
+      <body>
+        <h1 class="top">Pumpkin Bar & Restaurant</h1>
+        <p>Chokaa, Kangundo Road</p>
+        <p>Tel: 07123456789</p>
+        <p>Email: pumpkinbar@gmail.com</p>
+        <div class="divider"></div>
+        <p>Table: 01</p>
+        <p>Receipt No: Xdrtghe737</p>
+        <div class="divider"></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${selectedItems.map((item) => `
+              <tr>
+                <td>${item}</td>
+                <td>1</td>
+                <td>Ksh 10</td>
+                <td>Ksh 10</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <p>V.A.T: 16%</p>
+        <div class="divider"></div>
+        <div class="total">
+          <p>Total: Kshs ${calculateTotal(selectedItems)}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="footer">
+          <p class="buy-goods">BUY GOODS TILL NO: [8597614]</p>
+          <p>Served by: [Jose]</p>
+        </div>
+      </body>
+    </html>
+  `;
+
+// Function to calculate the total amount based on selected items
+function calculateTotal(selectedItems) {
+  // You can calculate the total amount based on the selected items here
+  // Replace this with your calculation logic
+  return "100"; // Example total amount
+}
+
+
 
     // Open a new print window or create an iframe
     const printWindow = window.open('', '', 'width=600,height=400');
     printWindow.document.open();
-    printWindow.document.write(`<html><head><title>Receipt</title></head><body><ul>${printContents}</ul></body></html>`);
+    // printWindow.document.write(`<html><head><title>Receipt</title></head><body><ul>${printContents}</ul></body></html>`);
+    printWindow.document.write(printContents);
     printWindow.document.close();
 
     printWindow.print();
@@ -41,35 +144,72 @@ const Products = () => {
   };
 
   return (
-    <div className="products-container">
-      <ul className="list-all-products">
-        {products.products.map((item) => (
-          <button
-            key={item}
-            className="product"
-            type="button"
-            onClick={() => handleItemClick(item)}
-            onKeyPress={(e) => handleItemKeyPress(item, e)}
-            tabIndex={0}
-          >
-            {item}
-          </button>
-        ))}
-      </ul>
-      <div className="receipt-area" id="receipt-area" ref={receiptRef}>
-        <p>Receipt area</p>
+    <div className="products-container flex flex-row px-4 gap-4 text-white relative">
+      <div className="receipt-area basis-1/2 bg-[#252A3C] max-h-screen overflow-y-scroll overflow-x-hidden" id="receipt-area" ref={receiptRef}>
+        <p>Pumpkin Bar & Restaurant</p>
+        <div className="flex justify-between">
+          <p>ITEM</p>
+          <p>QTY</p>
+          <p>PRICE</p>
+          <p>AMOUNT</p>
+        </div>
         <ul>
           {selectedItems.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
+        <div className='flex'>
         <button
           type="button"
+          className="bg-[#EB5757] p-4 rounded-lg mx-auto sticky flex gap-1"
           onClick={openPrintWindow}
           disabled={isPrinting || selectedItems.length === 0}
         >
-          Print Receipt
+          PRINT RECEIPT
+          <span><img src={print} className='h-6'/></span>
         </button>
+        </div>
+        </div>
+        <div className='list-all-products '>
+          <div className='flex justify-center gap-4 items-center overflow-hidden'>
+            <div className='flex flex-col items-center gap-1'>
+              <img src={beer} alt='Beers' width="100px" height="100px" />
+              <p>Beers</p>
+            </div>
+
+            <div className='flex flex-col items-center'>
+            <img src={pint} alt='pint' width="100px" height="100px" />
+            <p>Liqour</p>
+            </div>
+
+            <div className='flex flex-col items-center'>
+              <img src={wine} alt='Wines' width="100px" height="100px" />
+              <p>Wine</p>
+
+            </div>
+
+            <div className='flex flex-col items-center'>
+              <img src={restaurant} alt='Restaurant' width="100px" height="100px" />
+              <p>Restaurant</p>
+
+            </div>
+
+          </div>
+
+        <ul className="grid grid-cols-3 xl:grid-cols-4 xl:basis-3/4 basis-1/2 gap-4 p-3 bg-[#1B1F2C] static">
+          {products.products.map((item) => (
+            <button
+              key={item}
+              className=" flex flex-wrap items-center justify-around rounded-lg box-border lg:h-16 md:h-20 uppercase bg-[#252A3C] font-semibold"
+              type="button"
+              onClick={() => handleItemClick(item)}
+              onKeyPress={(e) => handleItemKeyPress(item, e)}
+              tabIndex={0}
+            >
+              {item}
+            </button>
+          ))}
+        </ul>
       </div>
     </div>
   );
