@@ -145,7 +145,7 @@ function calculateTotal(selectedItems) {
 
   return (
     <div className="products-container flex flex-row px-4 gap-4 text-white relative">
-      <div className="receipt-area basis-1/2 bg-[#252A3C] max-h-screen overflow-y-scroll overflow-x-hidden" id="receipt-area" ref={receiptRef}>
+      <div className="receipt-area basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden" id="receipt-area" ref={receiptRef}>
         <p>Pumpkin Bar & Restaurant</p>
         <div className="flex justify-between">
           <p>ITEM</p>
