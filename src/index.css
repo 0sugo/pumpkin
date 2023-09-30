@@ -22,6 +22,11 @@ body {
   background:"#252A3C";
 }
 
-.ionicon {
-  stroke: grey;
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
