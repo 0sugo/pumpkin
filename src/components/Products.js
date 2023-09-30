@@ -7,6 +7,10 @@ import wine from '../images/wine-outline.svg';
 import restaurant from '../images/restaurant-outline.svg';
 import print from '../images/print-outline.svg';
 import cart from '../images/cart-outline.svg';
+import add from '../images/add-circle-outline.svg';
+import subtract from '../images/remove-circle-outline.svg';
+import close from '../images/close-circle-outline.svg';
+
 import { fetchAllProducts } from '../redux/Products/productsSlice';
 
 const Products = () => {
@@ -24,6 +28,7 @@ const Products = () => {
   const updateQuantity = (name, quantity) => {
     const updatedItems = selectedItems.map((item) => {
       if (item.name === name) {
+        const newQuantity = Math.max(1, quantity);
         return { ...item, quantity };
       }
       return item;
@@ -168,6 +173,14 @@ function calculateTotal(selectedItems) {
     };
   };
 
+  function calculateTotal(selectedItems) {
+    let total = 0;
+    for (const item of selectedItems) {
+      total += item.price * item.quantity;
+    }
+    return total;
+  }
+
   return (
     <div className="products-container flex flex-row px-4 gap-4 text-white relative">
       <div className="receipt-area hide-scrollbar rounded-2xl basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden bg-scroll" id="receipt-area" ref={receiptRef}>
@@ -182,20 +195,31 @@ function calculateTotal(selectedItems) {
     </tr>
   </thead>
   <tbody>
-    {selectedItems.map((item, index) => (
-      <tr key={index} className={index % 2===0? 'bg-[#1B1F2C]' :'bg-inherit'}>
-        <td className="text-start p-2">{item.name}</td>
-        <td className="text-center py-4">
-          <button onClick={() => updateQuantity(item.name, item.quantity - 1)}>-</button>
-          <span className="m-5">{item.quantity}</span>
-          <button onClick={() => updateQuantity(item.name, item.quantity + 1)}>+</button>
-        </td>
-        <td className="text-center py-4">{item.price}</td>
-        <td className="text-center py-4">Ksh {item.price * item.quantity}</td>
-      </tr>
-    ))}
-  </tbody>
+  {selectedItems.map((item, index) => (
+    <tr key={index} className={index % 2 === 0 ? 'bg-[#1B1F2C]' : 'bg-inherit'}>
+      <td className="w-2/5 text-start px-2">{item.name}</td>
+      <td className="flex grow-0 justify-between items-center">
+        <button
+          onClick={() => updateQuantity(item.name, item.quantity - 1)}
+          disabled={item.quantity <= 1}
+        ><span className=''><img img src={subtract} alt='subtract' width="25px" height="25px"/></span>
+        </button>
+        <span className="m-5">{item.quantity}</span>
+        <button onClick={() => updateQuantity(item.name, item.quantity + 1)}
+        ><span><img img src={add} alt='adds' width="25px" height="25px"/></span></button>
+      </td>
+      <td className=" w-1/5 text-center">{item.price}</td>
+      <td className="w-1/5 text-center">Ksh {item.price * item.quantity}</td>
+    </tr>
+  ))}
+</tbody>
 </table>
+
+    <hr className='bg-white w-full'/>
+  <div className="flex justify-center ">
+    <h3>Total :
+    <span> {calculateTotal(selectedItems)}</span></h3>
+  </div>
 
 
         <div className='flex'>
