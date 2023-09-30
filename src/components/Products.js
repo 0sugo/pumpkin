@@ -1,17 +1,25 @@
 /* eslint-disable */
-import React, { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import  beer from '../images/beer-outline.svg';
 import pint from '../images/pint-outline.svg';
 import wine from '../images/wine-outline.svg';
 import restaurant from '../images/restaurant-outline.svg';
 import print from '../images/print-outline.svg';
+import cart from '../images/cart-outline.svg';
+import { fetchAllProducts } from '../redux/Products/productsSlice';
+
 const Products = () => {
   const products = useSelector((store) => store.allProducts);
   const receiptRef = useRef(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [enterPressed, setEnterPressed] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(fetchAllProducts());
+  },[dispatch]);
 
   const handleItemClick = (item) => {
     if (!enterPressed && !selectedItems.includes(item)) {
@@ -145,8 +153,8 @@ function calculateTotal(selectedItems) {
 
   return (
     <div className="products-container flex flex-row px-4 gap-4 text-white relative">
-      <div className="receipt-area basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden" id="receipt-area" ref={receiptRef}>
-        <p>Pumpkin Bar & Restaurant</p>
+      <div className="receipt-area hide-scrollbar rounded-2xl basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden bg-scroll" id="receipt-area" ref={receiptRef}>
+        <p className='text-center'>RECEIPT AREA</p>
         <div className="flex justify-between">
           <p>ITEM</p>
           <p>QTY</p>
@@ -169,7 +177,7 @@ function calculateTotal(selectedItems) {
           <span><img src={print} className='h-6'/></span>
         </button>
         </div>
-        </div>
+      </div>
         <div className='list-all-products '>
           <div className='flex justify-center gap-4 items-center overflow-hidden'>
             <div className='flex flex-col items-center gap-1'>
@@ -196,21 +204,21 @@ function calculateTotal(selectedItems) {
 
           </div>
 
-        <ul className="grid grid-cols-3 xl:grid-cols-4 xl:basis-3/4 basis-1/2 gap-4 p-3 bg-[#1B1F2C] static">
-          {products.products.map((item) => (
-            <button
-              key={item}
-              className=" flex flex-wrap items-center justify-around rounded-lg box-border lg:h-16 md:h-20 uppercase bg-[#252A3C] font-semibold"
-              type="button"
-              onClick={() => handleItemClick(item)}
-              onKeyPress={(e) => handleItemKeyPress(item, e)}
-              tabIndex={0}
-            >
-              {item}
-            </button>
-          ))}
-        </ul>
-      </div>
+          <ul className="grid grid-cols-3 xl:grid-cols-4 xl:basis-3/4 basis-1/2 gap-4 p-3 bg-[#1B1F2C] static">
+            {products.products.map((item) => (
+              <button
+                key={item.id}
+                className=" flex flex-wrap items-center justify-around rounded-lg box-border lg:h-16 md:h-20 uppercase bg-[#252A3C] font-semibold"
+                type="button"
+                onClick={() => handleItemClick(item)}
+                onKeyPress={(e) => handleItemKeyPress(item, e)}
+                tabIndex={0}
+              >
+                {item.name}
+              </button>
+            ))}
+          </ul>
+        </div>
     </div>
   );
 };
