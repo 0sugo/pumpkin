@@ -21,8 +21,6 @@ const Products = () => {
     dispatch(fetchAllProducts());
   },[dispatch]);
 
-
-  // Add a helper function to update the quantity of a selected item
   const updateQuantity = (name, quantity) => {
     const updatedItems = selectedItems.map((item) => {
       if (item.name === name) {
