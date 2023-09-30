@@ -1,85 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+export const fetchAllProducts = createAsyncThunk('products/fetchAll', async () => {
+  try {
+    const response = await axios('http://localhost:3000/api/v1/products');
+    return response.data.data;
+  } catch (error) {
+    return error;
+  }
+});
 
 const initialState = {
-  products: ['Balozi',
-    'Balozi can',
-    'White cap',
-    'White cap can',
-    'Tusker',
-    'Tusker can',
-    'Tusker cider',
-    'Cider can',
-    'Tusker Lite',
-    'Tusker Lite Can',
-    'Tusker malt',
-    'Pilsner',
-    'Guiness',
-    'Guiness Can',
-    'Guiness smooth',
-    'Summit',
-    'K.B',
-    'Snapp',
-    'Caprice',
-    'Faxe',
-    'Guaranna',
-    'Red Bull',
-    'Monster',
-    'Richot 750ml',
-    'richot 1/2',
-    'Richot 1/4',
-    'KC 750ml',
-    'KC 1/2',
-    'KC 1/4',
-    'Smirnoff vodka 750ml',
-    'Smirnoff vodka 1/2',
-    'Smirnoff vodka 1/4',
-    'Black ice',
-    'V&A',
-    'Viceroy 750ml',
-    'Viceroy 1/2',
-    'Viceroy 1/4',
-    'Gilbeys 750ml',
-    'Gilbeys 1/2',
-    'Gilbeys 1/4',
-    'Captain 750ml',
-    'captain 1/4',
-    'Famous Grouse',
-    'Black &White',
-    'Black &White 1/2',
-    'Royal Stag',
-    'Kibao 750ml',
-    'Kibao 1/2',
-    'Kibao 1/4',
-    'All seasons 750ml',
-    'All seasons 1/2',
-    'All seasons 1/4',
-    'VAT69 750ml',
-    'VAT69 1/2',
-    'Imperial',
-    'Hunters 750ml',
-    'Hunters 1/2',
-    'Hunters 1/4',
-    'Konyagi 750ml',
-    'Konyagi 1/2',
-    'Konyagi 1/4',
-    'Chrome vodka 750ml',
-    'Chrome GIN 1/4',
-    'Chrome vodka 1/4',
-    'Bond',
-    'T.Ace 1/4',
-    'Cellar cask',
-    '4th Street',
-    'Soda 500ml',
-    'Soda 300ml',
-    'Soda water',
-    'Predator',
-    'Delmonte',
-    'King Fisher',
-    'Red Label',
-    'H20 LTR',
-    'H20 500ml',
-    'Lemonade'],
+  products: [],
   isLoading: false,
+  error: '',
 };
 const productsSlice = createSlice({
   name: 'All products',
@@ -90,6 +24,20 @@ const productsSlice = createSlice({
     },
 
   },
-
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAllProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        state.isLoading = true;
+        state.products = action.payload;
+      })
+      .addCase(fetchAllProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.products = [];
+        state.error = action.error.message;
+      });
+  },
 });
 export default productsSlice.reducer;
