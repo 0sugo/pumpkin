@@ -1,17 +1,17 @@
 /* eslint-disable */
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import beer from "../images/beer-outline.svg";
-import pint from "../images/pint-outline.svg";
-import wine from "../images/wine-outline.svg";
-import restaurant from "../images/restaurant-outline.svg";
-import print from "../images/print-outline.svg";
-import cart from "../images/cart-outline.svg";
-import add from "../images/add-circle-outline.svg";
-import subtract from "../images/remove-circle-outline.svg";
-import close from "../images/close-circle-outline.svg";
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import beer from '../images/beer-outline.svg';
+import pint from '../images/pint-outline.svg';
+import wine from '../images/wine-outline.svg';
+import restaurant from '../images/restaurant-outline.svg';
+import print from '../images/print-outline.svg';
+import cart from '../images/cart-outline.svg';
+import add from '../images/add-circle-outline.svg';
+import subtract from '../images/remove-circle-outline.svg';
+import close from '../images/close-circle-outline.svg';
 
-import { fetchAllProducts } from "../redux/Products/productsSlice";
+import { fetchAllProducts } from '../redux/Products/productsSlice';
 
 const Products = () => {
   const products = useSelector((store) => store.allProducts);
@@ -39,7 +39,7 @@ const Products = () => {
   const handleItemClick = (item) => {
     if (!enterPressed) {
       const existingItem = selectedItems.find(
-        (selectedItem) => selectedItem.name === item.name
+        (selectedItem) => selectedItem.name === item.name,
       );
 
       if (existingItem) {
@@ -55,14 +55,13 @@ const Products = () => {
   };
 
   const handleItemKeyPress = (item, event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       setEnterPressed(true);
       handleItemClick(item);
     }
   };
 
   const openPrintWindow = () => {
-    // const printContents = selectedItems.map((item) => `<li>${item}</li>`).join('');
     const printContents = `
     <html>
       <head>
@@ -129,17 +128,17 @@ const Products = () => {
           </thead>
           <tbody>
             ${selectedItems
-        .map(
-          (item) => `
+    .map(
+      (item) => `
               <tr>
-                <td>${item}</td>
-                <td>1</td>
-                <td>Ksh 10</td>
-                <td>Ksh 10</td>
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td>${item.price}</td>
+                <td>Ksh ${item.price * item.quantity }</td>
               </tr>
-            `
-        )
-        .join("")}
+            `,
+    )
+    .join('')}
           </tbody>
         </table>
         <p>V.A.T: 16%</p>
@@ -156,23 +155,14 @@ const Products = () => {
     </html>
   `;
 
-    // Function to calculate the total amount based on selected items
-    function calculateTotal(selectedItems) {
-      // You can calculate the total amount based on the selected items here
-      // Replace this with your calculation logic
-      return "100"; // Example total amount
-    }
-
-    // Open a new print window or create an iframe
-    const printWindow = window.open("", "", "width=600,height=400");
+    const printWindow = window.open('', '', 'width=600,height=400');
     printWindow.document.open();
-    // printWindow.document.write(`<html><head><title>Receipt</title></head><body><ul>${printContents}</ul></body></html>`);
+
     printWindow.document.write(printContents);
     printWindow.document.close();
 
     printWindow.print();
 
-    // Close the print window or remove the iframe after printing
     printWindow.onafterprint = () => {
       printWindow.close();
       setIsPrinting(false);
@@ -184,7 +174,7 @@ const Products = () => {
     for (const item of selectedItems) {
       total += item.price * item.quantity;
     }
-    return total;
+    return total.toLocaleString();
   }
 
   const removeItem = (name) => {
@@ -194,8 +184,7 @@ const Products = () => {
 
   return (
     <div className="products-container flex flex-row px-4 gap-4 text-white relative">
-      <div
-        className="receipt-area hide-scrollbar rounded-2xl basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden bg-scroll"
+      <div className="receipt-area hide-scrollbar rounded-2xl basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden bg-scroll"
         id="receipt-area"
         ref={receiptRef}
       >
@@ -214,11 +203,11 @@ const Products = () => {
             {selectedItems.map((item, index) => (
               <tr
                 key={index}
-                className={index % 2 === 0 ? "bg-[#1B1F2C]" : "bg-inherit"}
+                className={index % 2 === 0 ? 'bg-[#1B1F2C]' : 'bg-inherit'}
               >
                 <td className="px-2">
                   <div className="flex items-center">
-                    <span className="w-8 h-8 cursor-pointer" onClick={()=>{removeItem(item.name)}} >
+                    <span className="w-8 h-8 cursor-pointer" onClick={() => { removeItem(item.name); }}>
                       <img
                         src={close}
                         alt="remover"
@@ -252,7 +241,9 @@ const Products = () => {
                 </td>
                 <td className="w-1/5 text-center">{item.price}</td>
                 <td className="w-1/5 text-center">
-                  Ksh {item.price * item.quantity}
+                  Ksh
+                  {' '}
+                  {item.price * item.quantity}
                 </td>
               </tr>
             ))}
@@ -262,7 +253,11 @@ const Products = () => {
         <hr className="bg-white w-full" />
         <div className="flex justify-center ">
           <h3>
-            Total :<span> {calculateTotal(selectedItems)}</span>
+            Total :
+            <span>
+              {' '}
+              {calculateTotal(selectedItems)}
+            </span>
           </h3>
         </div>
 
