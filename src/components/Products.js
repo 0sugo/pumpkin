@@ -21,12 +21,31 @@ const Products = () => {
     dispatch(fetchAllProducts());
   },[dispatch]);
 
+
+  // Add a helper function to update the quantity of a selected item
+  const updateQuantity = (name, quantity) => {
+    const updatedItems = selectedItems.map((item) => {
+      if (item.name === name) {
+        return { ...item, quantity };
+      }
+      return item;
+    });
+    setSelectedItems(updatedItems);
+  };
+
   const handleItemClick = (item) => {
-    if (!enterPressed && !selectedItems.includes(item)) {
-      setSelectedItems([...selectedItems, item]);
+    if (!enterPressed) {
+      const existingItem = selectedItems.find((selectedItem) => selectedItem.name === item.name);
+
+      if (existingItem) {
+        updateQuantity(item.name, existingItem.quantity + 1);
+      } else {
+        setSelectedItems([...selectedItems, { name: item.name, price: item.price, quantity: 1 }]);
+      }
     }
     setEnterPressed(false);
   };
+
 
   const handleItemKeyPress = (item, event) => {
     if (event.key === 'Enter') {
@@ -151,6 +170,11 @@ function calculateTotal(selectedItems) {
     };
   };
 
+  function calculateTotal(selectedItems) {
+    const totalAmount = selectedItems.reduce((acc, item) => acc + item.price, 0);
+    return totalAmount.toFixed(2);
+  }
+
   return (
     <div className="products-container flex flex-row px-4 gap-4 text-white relative">
       <div className="receipt-area hide-scrollbar rounded-2xl basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden bg-scroll" id="receipt-area" ref={receiptRef}>
@@ -162,8 +186,17 @@ function calculateTotal(selectedItems) {
           <p>AMOUNT</p>
         </div>
         <ul>
-          {selectedItems.map((item) => (
-            <li key={item}>{item}</li>
+          {selectedItems.map((item,index) => (
+            <li key={index} className="flex justify-between items-center">
+      <span>{item.name}</span>
+      <div className="quantity">
+        <button onClick={() => updateQuantity(item.name, item.quantity - 1)}>-</button>
+        <span>{item.quantity}</span>
+        <button onClick={() => updateQuantity(item.name, item.quantity + 1)}>+</button>
+      </div>
+      <span>Ksh {item.price}</span>
+      <span>Ksh {item.price * item.quantity}</span>
+    </li>
           ))}
         </ul>
         <div className='flex'>
