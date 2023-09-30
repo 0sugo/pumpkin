@@ -170,39 +170,40 @@ function calculateTotal(selectedItems) {
     };
   };
 
-  function calculateTotal(selectedItems) {
-    const totalAmount = selectedItems.reduce((acc, item) => acc + item.price, 0);
-    return totalAmount.toFixed(2);
-  }
-
   return (
     <div className="products-container flex flex-row px-4 gap-4 text-white relative">
       <div className="receipt-area hide-scrollbar rounded-2xl basis-1/2 bg-[#252A3C] p-4 max-h-screen overflow-y-scroll overflow-x-hidden bg-scroll" id="receipt-area" ref={receiptRef}>
         <p className='text-center'>RECEIPT AREA</p>
-        <div className="flex justify-between">
-          <p>ITEM</p>
-          <p>QTY</p>
-          <p>PRICE</p>
-          <p>AMOUNT</p>
-        </div>
-        <ul>
-          {selectedItems.map((item,index) => (
-            <li key={index} className="flex justify-between items-center">
-      <span>{item.name}</span>
-      <div className="quantity">
-        <button onClick={() => updateQuantity(item.name, item.quantity - 1)}>-</button>
-        <span>{item.quantity}</span>
-        <button onClick={() => updateQuantity(item.name, item.quantity + 1)}>+</button>
-      </div>
-      <span>Ksh {item.price}</span>
-      <span>Ksh {item.price * item.quantity}</span>
-    </li>
-          ))}
-        </ul>
+        <table className="w-full table-fixed">
+  <thead>
+    <tr>
+      <th className="text-start py-4">Item</th>
+      <th className="text-center">Qty</th>
+      <th className="text-center">Price</th>
+      <th className="text-center">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {selectedItems.map((item, index) => (
+      <tr key={index} className={index % 2===0? 'bg-[#1B1F2C]' :'bg-inherit'}>
+        <td className="text-start p-2">{item.name}</td>
+        <td className="text-center py-4">
+          <button onClick={() => updateQuantity(item.name, item.quantity - 1)}>-</button>
+          <span className="m-5">{item.quantity}</span>
+          <button onClick={() => updateQuantity(item.name, item.quantity + 1)}>+</button>
+        </td>
+        <td className="text-center py-4">{item.price}</td>
+        <td className="text-center py-4">Ksh {item.price * item.quantity}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+
         <div className='flex'>
         <button
           type="button"
-          className="bg-[#EB5757] p-4 rounded-lg mx-auto sticky flex gap-1"
+          className="bg-[#EB5757] p-4 m-10 rounded-lg mx-auto sticky flex gap-1"
           onClick={openPrintWindow}
           disabled={isPrinting || selectedItems.length === 0}
         >
