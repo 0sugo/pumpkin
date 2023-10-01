@@ -3,7 +3,7 @@ import logo from '../images/pumpkin.svg';
 import logout from '../images/log-out-outline.svg';
 import home from '../images/home-outline.svg';
 import linker from '../images/link-outline.svg';
-qwertyui
+qwertyu
 const Navbar = () => (
   <div className="main-nav flex items-center justify-between mx-32 text-[#EB5757]">
     <img src={logo} alt="logo" className="logo bg-inherit" width="80px" height="80px" />
