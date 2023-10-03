@@ -19,6 +19,7 @@ const Products = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [enterPressed, setEnterPressed] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
+  const [setName, Name]=useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -169,6 +170,10 @@ const Products = () => {
     };
   };
 
+  const verifyName = (e)=>{
+    const name =e.target.value;
+  }
+
   function calculateTotal(selectedItems) {
     let total = 0;
     for (const item of selectedItems) {
@@ -189,6 +194,16 @@ const Products = () => {
         ref={receiptRef}
       >
         <p className="text-center">RECEIPT AREA</p>
+        <form>
+        <div className="sm:col-span-4">
+          <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">Customer name :</label>
+          <div className="mt-2">
+            <div className="flex rounded-md shadow-sm ring-1 ring-insert  sm:max-w-md">
+              <input type="text" name="username" id="username" autoComplete="username" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="customer name" onChange={verifyName}/>
+            </div>
+          </div>
+          </div>
+        </form>
 
         <table className="w-full table-fixed">
           <thead>
