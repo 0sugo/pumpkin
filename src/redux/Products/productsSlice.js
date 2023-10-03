@@ -15,6 +15,7 @@ const initialState = {
   isLoading: false,
   error: '',
 };
+
 const productsSlice = createSlice({
   name: 'All products',
   initialState,
@@ -22,7 +23,6 @@ const productsSlice = createSlice({
     addproduct: (state, action) => {
       state.products.push(action.payload);
     },
-
   },
   extraReducers: (builder) => {
     builder
@@ -30,7 +30,7 @@ const productsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.products = action.payload;
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
